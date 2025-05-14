@@ -1,0 +1,8 @@
+name: medired
+
+packages:
+  - packages/*
+
+scripts:
+  analyze:
+    exec: dart analyze .

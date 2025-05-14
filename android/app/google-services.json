@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "${PROJECT_NUMBER}",
+    "project_id": "${PROJECT_ID}",
+    "storage_bucket": "${STORAGE_BUCKET}"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "${MOBILESDK_APP_ID}",
+        "android_client_info": {
+          "package_name": "${ANDROID_PACKAGE_NAME}"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "126872780502-9k0biatcr0umlo9vrhph32oj6t4scrnc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.medired.medired",
+            "certificate_hash": "7017e7e5f4ee0a48c0886adccd6a08ce92d34d88"
+          }
+        },
+        {
+          "client_id": "126872780502-tnar5i5k0ql351fu2vridi2ifm3u94m6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "${API_KEY}"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "126872780502-tnar5i5k0ql351fu2vridi2ifm3u94m6.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "126872780502-o9sanm0n56ffgu8v49vf4f779dqodlai.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.medired.medired"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

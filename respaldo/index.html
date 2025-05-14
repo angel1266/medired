@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!--
+    If you are serving your web app in a path other than the root, change the
+    href value below to reflect the base path you are serving from.
+
+    The path provided below has to start and end with a slash "/" in order for
+    it to work correctly.
+
+    For more details:
+    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
+
+    This is a placeholder for base href that will be replaced by the value of
+    the `--base-href` argument provided to `flutter build`.
+  -->
+  
+  <!-- Título del sitio -->
+<title>Medired - Tu plataforma de gestión médica eficiente</title>
+
+<!-- Descripción del sitio -->
+<meta name="description" content="Medired es tu solución completa para la gestión médica. Programa citas, administra pacientes y optimiza tus servicios de salud de manera sencilla y segura.">
+
+<!-- Palabras clave -->
+<meta name="keywords" content="gestión médica, plataforma médica, citas médicas, administración de pacientes, software médico, salud">
+
+<!-- Configuración de viewport -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Autor del sitio -->
+<meta name="author" content="Medired Team">
+
+<!-- Lenguaje del sitio -->
+<meta http-equiv="Content-Language" content="es-DO">
+
+<!-- Robots (para control de indexación) -->
+<meta name="robots" content="index, follow">
+
+
+
+<!-- General -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://medired.do">
+<meta property="og:title" content="Medired - Tu plataforma de gestión médica eficiente">
+<meta property="og:description" content="Optimiza tus servicios médicos con Medired. Administra citas, pacientes y más en un solo lugar.">
+<meta property="og:image" content="https://medired.do/assets/assets/images/corazon.png">
+
+<!-- Detalles adicionales -->
+<meta property="og:locale" content="es_DO">
+<meta property="og:site_name" content="Medired">
+
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Medired - Tu plataforma de gestión médica eficiente">
+<meta name="twitter:description" content="Medired facilita la gestión médica. Programa citas y administra pacientes de manera rápida y segura.">
+<meta name="twitter:image" content="https://medired.do/assets/img/twitter-card.jpg">
+<meta name="twitter:site" content="@Medired">
+
+
+<!-- Prevenir que el contenido se copie directamente -->
+<meta name="copyright" content="© 2025 Medired. Todos los derechos reservados.">
+
+<!-- Compatibilidad con navegadores antiguos -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<!-- Favicon -->
+<link rel="icon" href="https://medired.do/favicon.ico" type="image/x-icon">
+
+
+<!-- Precargar estilos -->
+<link rel="preload" href="https://medired.do/assets/css/styles.css" as="style">
+
+<!-- Precargar fuentes -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+
+
+
+  <head>
+
+    <!-- // Other stuff -->
+  
+  
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2boTuMNfe8TPuBcg0dIaqLE57j03a0UE&libraries=drawing,visualization,places"></script>
+  </head>
+  <base href="./">
+
+  <meta charset="UTF-8">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <meta name="description" content="A new Flutter project.">
+
+  <!-- iOS meta tags & icons -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="medired">
+  <meta name="google-signin-client_id" content="126872780502-tnar5i5k0ql351fu2vridi2ifm3u94m6.apps.googleusercontent.com" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" /> <meta http-equiv="Pragma" content="no-cache" /> <meta http-equiv="Expires" content="0" />
+  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png"/>
+
+  <title>medired</title>
+  <link rel="manifest" href="manifest.json?v=1.0.83">
+  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
+  <script>
+    window.fbAsyncInit = function() {
+      FB.init({
+        appId: '584858571103290',
+        cookie: true,
+        xfbml: true,
+        version: 'v12.0'
+      });
+      FB.AppEvents.logPageView();
+      document.dispatchEvent(new Event('fbLoad'));
+    };
+  </script>
+   <script>
+   document.addEventListener("DOMContentLoaded", function() {
+    if (typeof FB !== 'undefined') {
+      console.log('FB is defined');
+    } else {
+      console.error('FB is undefined');
+    }
+  });
+  </script>
+  <script>
+    // The value below is injected by flutter build, do not touch.
+    const serviceWorkerVersion = "1758737999";
+  </script>
+  <!-- This script adds the flutter initialization JS code -->
+  <script src="flutter.js?v=1.0.83" defer></script>
+</head>
+<body>
+  <script>
+    window.addEventListener('load', function(ev) {
+      // Download main.dart.js
+      _flutter.loader.loadEntrypoint({
+        serviceWorker: {
+          serviceWorkerVersion: serviceWorkerVersion,
+        },
+        onEntrypointLoaded: function(engineInitializer) {
+          engineInitializer.initializeEngine().then(function(appRunner) {
+            appRunner.runApp();
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,1 @@
+export 'single_appointment_repository.dart';

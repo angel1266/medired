@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!--
+    If you are serving your web app in a path other than the root, change the
+    href value below to reflect the base path you are serving from.
+
+    The path provided below has to start and end with a slash "/" in order for
+    it to work correctly.
+
+    For more details:
+    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
+
+    This is a placeholder for base href that will be replaced by the value of
+    the `--base-href` argument provided to `flutter build`.
+  -->
+  <head>
+
+    <!-- // Other stuff -->
+  
+  
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2boTuMNfe8TPuBcg0dIaqLE57j03a0UE&libraries=drawing,visualization,places"></script>
+  </head>
+  <base href="$FLUTTER_BASE_HREF">
+
+  <meta charset="UTF-8">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <meta name="description" content="A new Flutter project.">
+
+  <!-- iOS meta tags & icons -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="medired">
+  <meta name="google-signin-client_id" content="126872780502-tnar5i5k0ql351fu2vridi2ifm3u94m6.apps.googleusercontent.com" />
+  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png"/>
+
+  <title>medired</title>
+  <link rel="manifest" href="manifest.json">
+
+  <script>
+    // The value below is injected by flutter build, do not touch.
+    var serviceWorkerVersion = null;
+  </script>
+  <!-- This script adds the flutter initialization JS code -->
+  <script src="flutter.js" defer></script>
+  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId: '584858571103290',
+          cookie: true,
+          xfbml: true,
+          version: 'v12.0'
+        });
+        FB.AppEvents.logPageView();
+        document.dispatchEvent(new Event('fbLoad'));
+      };
+    </script>
+     <script>
+     document.addEventListener("DOMContentLoaded", function() {
+      if (typeof FB !== 'undefined') {
+        console.log('FB is defined');
+      } else {
+        console.error('FB is undefined');
+      }
+    });
+    </script>
+</head>
+<body>
+
+  <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-crashlytics.js"></script>
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-analytics.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+  
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+      apiKey: "AIzaSyDCHhUyy3xsOSmsdBl5qgU02PhM5CqKJb4",
+      authDomain: "medired-f442d.firebaseapp.com",
+      projectId: "medired-f442d",
+      storageBucket: "medired-f442d.appspot.com",
+      messagingSenderId: "126872780502",
+      appId: "1:126872780502:web:18cf9694ab76333f5fd377",
+      measurementId: "G-LKFZXDCEYK"
+    };
+  
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+   // firebase.crashlytics().setCrashlyticsCollectionEnabled(true);
+  </script>
+  <script>
+    window.addEventListener('load', function(ev) {
+      // Download main.dart.js
+      _flutter.loader.loadEntrypoint({
+        serviceWorker: {
+          serviceWorkerVersion: serviceWorkerVersion,
+        },
+        onEntrypointLoaded: function(engineInitializer) {
+          engineInitializer.initializeEngine().then(function(appRunner) {
+            appRunner.runApp();
+          });
+        }
+      });
+    });
+  </script>
+
+
+</body>
+</html>
