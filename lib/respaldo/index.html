@@ -1,0 +1,50 @@
+
+  
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2boTuMNfe8TPuBcg0dIaqLE57j03a0UE&libraries=drawing,visualization,places"></script>
+</head>
+<base href="./">
+
+<meta charset="UTF-8">
+<meta content="IE=Edge" http-equiv="X-UA-Compatible">
+<meta name="description" content="A new Flutter project.">
+
+<!-- iOS meta tags & icons -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="medired">
+<meta name="google-signin-client_id" content="126872780502-tnar5i5k0ql351fu2vridi2ifm3u94m6.apps.googleusercontent.com" />
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" /> <meta http-equiv="Pragma" content="no-cache" /> <meta http-equiv="Expires" content="0" />
+<link rel="apple-touch-icon" href="icons/Icon-192.png">
+
+<!-- Favicon -->
+<link rel="icon" type="image/png" href="favicon.png"/>
+
+<title>medired Admin</title>
+<link rel="manifest" href="manifest.json?v=1.0.1">
+
+<script>
+  // The value below is injected by flutter build, do not touch.
+  const serviceWorkerVersion = "1758737999";
+</script>
+<!-- This script adds the flutter initialization JS code -->
+<script src="flutter.js?v=1.0.1" defer></script>
+</head>
+<body>
+
+<script>
+  window.addEventListener('load', function(ev) {
+    // Download main.dart.js
+    _flutter.loader.loadEntrypoint({
+      serviceWorker: {
+        serviceWorkerVersion: serviceWorkerVersion,
+      },
+      onEntrypointLoaded: function(engineInitializer) {
+        engineInitializer.initializeEngine().then(function(appRunner) {
+          appRunner.runApp();
+        });
+      }
+    });
+  });
+</script>
+</body>
+</html>
