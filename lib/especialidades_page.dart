@@ -119,55 +119,64 @@ class _EspecialidadesPageState extends State<EspecialidadesPage> {
   }
 
   Future<void> _addOrUpdateService() async {
-    if (_formKey.currentState!.validate()) {
-      QuerySnapshot querySnapshot = await _firestore
-          .collection('especialidades')
-          .where('id_servicio', isEqualTo: selectedServicio)
-          .get();
+  if (_formKey.currentState!.validate()) {
+    QuerySnapshot querySnapshot = await _firestore
+        .collection('especialidades')
+        .where('id_servicio', isEqualTo: selectedServicio)
+        .get();
 
-      if (_editingServiceId == null) {
-        // Add new service
-        if (querySnapshot.docs.length > 0) {
-          for (QueryDocumentSnapshot doc in querySnapshot.docs) {
-            var data = doc.data() as Map<String, dynamic>;
-            var myname = "";
-            data["especialidades"].forEach((key, value) {
-              myname = (int.parse(key) + 1).toString();
-            });
+    if (_editingServiceId == null) {
+      // Agregar nuevo servicio
+      if (querySnapshot.docs.isNotEmpty) {
+        for (QueryDocumentSnapshot doc in querySnapshot.docs) {
+          var data = doc.data() as Map<String, dynamic>;
+          var especialidades = data["especialidades"] as Map<String, dynamic>;
 
-            await _firestore.collection('especialidades').doc(doc.id).update({
-              'especialidades.${myname}': [_nombreController.text, '0']
-            });
-          }
-        } else {
-          await _firestore.collection('especialidades').add({
-            'especialidades': {
-              '0': [_nombreController.text, '0']
-            },
-            'id_servicio': selectedServicio
+          // ✅ Buscar índice numérico máximo de claves válidas
+          int maxIndex = -1;
+          especialidades.forEach((key, value) {
+            final index = int.tryParse(key);
+            if (index != null && index > maxIndex) {
+              maxIndex = index;
+            }
+          });
+
+          final myname = (maxIndex + 1).toString();
+
+          await _firestore.collection('especialidades').doc(doc.id).update({
+            'especialidades.$myname': [_nombreController.text, '0']
           });
         }
       } else {
-        // Update existing service
-        await _firestore
-            .collection('especialidades')
-            .doc(_editingServiceId)
-            .update({
-          'especialidades.${editEspecislidad}': [_nombreController.text, '0'],
+        await _firestore.collection('especialidades').add({
+          'especialidades': {
+            '0': [_nombreController.text, '0']
+          },
+          'id_servicio': selectedServicio
         });
       }
-
-      _clearForm();
-
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(_editingServiceId == null
-              ? 'Servicio agregado'
-              : 'Servicio actualizado'),
-        ),
-      );
+    } else {
+      // Actualizar servicio existente
+      await _firestore
+          .collection('especialidades')
+          .doc(_editingServiceId)
+          .update({
+        'especialidades.$editEspecislidad': [_nombreController.text, '0'],
+      });
     }
+
+    _clearForm();
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(_editingServiceId == null
+            ? 'Servicio agregado'
+            : 'Servicio actualizado'),
+      ),
+    );
   }
+}
+
 
   Future<void> _deleteService(String id, name) async {
     await _firestore.collection('especialidades').doc(id).update({
