@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -234,60 +236,75 @@ class MainServiciosViewState extends State<MainServiciosView> {
                                                   return Text(
                                                       'Error: ${snapshot.error}');
                                                 } else if (snapshot.hasData) {
-                                                  return snapshot.data!.isEmpty
-                                                      ? Container()
-                                                      : Column(
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .start,
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .start,
-                                                          children: [
-                                                            Text(
-                                                              "Detalles",
-                                                              style: TextStyle(
-                                                                color: AppColors
-                                                                    .blueBackground,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold,
-                                                                fontSize: isDesktop
-                                                                    ? (MediaQuery.of(context).size.width *
-                                                                            0.03) *
-                                                                        0.5
-                                                                    : (MediaQuery.of(context).size.width *
-                                                                            0.1) *
-                                                                        0.5,
-                                                                letterSpacing:
-                                                                    0.03,
-                                                                fontFamily:
-                                                                    'Outfit',
-                                                              ),
-                                                            ),
-                                                            Column(
-                                                                crossAxisAlignment:
-                                                                    CrossAxisAlignment
-                                                                        .start,
-                                                                mainAxisAlignment:
-                                                                    MainAxisAlignment
-                                                                        .start,
-                                                                children: snapshot
-                                                                    .data![0][0]
-                                                                        [
-                                                                        "especialidades"]
-                                                                    .entries
-                                                                    .map<Widget>(
-                                                                        (entry) {
-                                                                  return Text(
-                                                                    '* ${entry.value[0].toString()}',
-                                                                    style: TextStyle(
-                                                                        fontSize:
-                                                                            20),
-                                                                  );
-                                                                }).toList()),
-                                                          ],
-                                                        );
+                                                  if (snapshot.data!.isEmpty)
+                                                    return Container();
+
+                                                  // Obtener y ordenar alfabéticamente las especialidades
+                                                  final especialidadesOrdenadas =
+                                                      (snapshot.data![0][0]
+                                                                  ["especialidades"]
+                                                              as Map<String,
+                                                                  dynamic>)
+                                                          .entries
+                                                          .toList()
+                                                        ..sort((a, b) => a
+                                                            .value[0]
+                                                            .toString()
+                                                            .compareTo(b
+                                                                .value[0]
+                                                                .toString()));
+
+                                                  return Column(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment.start,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      Text(
+                                                        "Detalles",
+                                                        style: TextStyle(
+                                                          color: AppColors
+                                                              .blueBackground,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          fontSize: isDesktop
+                                                              ? (MediaQuery.of(
+                                                                              context)
+                                                                          .size
+                                                                          .width *
+                                                                      0.03) *
+                                                                  0.5
+                                                              : (MediaQuery.of(
+                                                                              context)
+                                                                          .size
+                                                                          .width *
+                                                                      0.1) *
+                                                                  0.5,
+                                                          letterSpacing: 0.03,
+                                                          fontFamily: 'Outfit',
+                                                        ),
+                                                      ),
+                                                      Column(
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .start,
+                                                        children:
+                                                            especialidadesOrdenadas
+                                                                .map<Widget>(
+                                                                    (entry) {
+                                                          return Text(
+                                                            '* ${entry.value[0].toString()}',
+                                                            style: TextStyle(
+                                                                fontSize: 20),
+                                                          );
+                                                        }).toList(),
+                                                      ),
+                                                    ],
+                                                  );
                                                 } else {
                                                   return Text('No hay datos');
                                                 }
@@ -386,19 +403,21 @@ class MainServiciosViewState extends State<MainServiciosView> {
     return numero % 2 == 0;
   }
 
-  List<Widget> ServicioWidget(i, num) {
-  
-    num = num / 2;
-
+  List<Widget> ServicioWidget(int i, int totalServicios) {
     List<Widget> list = [];
+
+    num mitad = (totalServicios / 2).floor();
 
     if (i > 0) {
       index = index + 1;
     } else {
       index = i;
     }
+
+    // Primer botón
+    if (index >= servicios.length) return list;
     var dataId = index;
-    var dataId2 = 0;
+
     list.add(Container(
       margin: EdgeInsets.only(bottom: 5),
       child: ElevatedButton.icon(
@@ -412,7 +431,6 @@ class MainServiciosViewState extends State<MainServiciosView> {
           ),
         ),
         onPressed: () {
-          print(_contentKeys[servicios[dataId]["id"]].toString());
           _scrollToContent(_contentKeys[servicios[dataId]["id"].toString()]);
         },
         label: Container(
@@ -434,50 +452,48 @@ class MainServiciosViewState extends State<MainServiciosView> {
         ),
       ),
     ));
-    index++;
-    dataId2 = index;
-    print(servicios[index]["data"]["nombre"]);
-    if ((num >= (i + 1)) || (num <= (i + 1) && esPar(num))) {
-      list.add(SizedBox(
-        width: 5,
-      ));
 
-      list.add(ElevatedButton.icon(
-        icon: Icon(getIcon(servicios[index]["data"]["iconName"]),
-            color: AppColors.greenBackground),
-        style: ElevatedButton.styleFrom(
-          padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 32),
-          backgroundColor: Colors.white,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8),
-          ),
-        ),
-        onPressed: () {
-          _scrollToContent(_contentKeys[servicios[dataId2]["id"].toString()]);
-        },
-        label: Container(
-          width: MediaQuery.of(context).size.width > 1200
-              ? (MediaQuery.of(context).size.width * 0.09)
-              : MediaQuery.of(context).size.width < 806
-                  ? (MediaQuery.of(context).size.width * 0.15)
-                  : (MediaQuery.of(context).size.width * 0.1),
-          child: Text(
-            servicios[index]["data"]["nombre"],
-            style: TextStyle(
-                color: Colors.black,
-                fontSize: MediaQuery.of(context).size.width < 1200
-                    ? MediaQuery.of(context).size.width < 806
-                        ? (MediaQuery.of(context).size.width * 0.022)
-                        : (MediaQuery.of(context).size.width * 0.011)
-                    : MediaQuery.of(context).size.width * 0.012),
-          ),
-        ),
-      ));
-    } else {
-      list.add(SizedBox(
-        width: 10,
-      ));
+    // Segundo botón (si existe)
+    index++;
+    if ((index >= servicios.length) || ((mitad < i + 1) && !esPar(mitad))) {
+      return list;
     }
+
+    var dataId2 = index;
+
+    list.add(SizedBox(width: 5));
+    list.add(ElevatedButton.icon(
+      icon: Icon(getIcon(servicios[index]["data"]["iconName"]),
+          color: AppColors.greenBackground),
+      style: ElevatedButton.styleFrom(
+        padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 32),
+        backgroundColor: Colors.white,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8),
+        ),
+      ),
+      onPressed: () {
+        _scrollToContent(_contentKeys[servicios[dataId2]["id"].toString()]);
+      },
+      label: Container(
+        width: MediaQuery.of(context).size.width > 1200
+            ? (MediaQuery.of(context).size.width * 0.09)
+            : MediaQuery.of(context).size.width < 806
+                ? (MediaQuery.of(context).size.width * 0.15)
+                : (MediaQuery.of(context).size.width * 0.1),
+        child: Text(
+          servicios[index]["data"]["nombre"],
+          style: TextStyle(
+              color: Colors.black,
+              fontSize: MediaQuery.of(context).size.width < 1200
+                  ? MediaQuery.of(context).size.width < 806
+                      ? (MediaQuery.of(context).size.width * 0.022)
+                      : (MediaQuery.of(context).size.width * 0.011)
+                  : MediaQuery.of(context).size.width * 0.012),
+        ),
+      ),
+    ));
+
     return list;
   }
 

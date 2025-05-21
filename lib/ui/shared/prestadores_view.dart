@@ -394,19 +394,33 @@ class PrestadoresViewState extends State<PrestadoresView> {
             ),
             const SizedBox(height: 20),
             Text(
-              prestador["data"]["companyInfo"]["address"][0]["direccion"],
-              style: TextStyle(color: Colors.black),
-            ),
+  (prestador["data"]["companyInfo"]["address"] != null &&
+   prestador["data"]["companyInfo"]["address"].isNotEmpty)
+      ? prestador["data"]["companyInfo"]["address"][0]["direccion"] ?? 'Sin dirección'
+      : 'Dirección no disponible',
+  style: TextStyle(color: Colors.black),
+),
+
             const SizedBox(height: 20),
             Align(
               alignment: Alignment.centerLeft,
               child: ElevatedButton.icon(
-                onPressed: () {
-                  /// showMapDialog(prestador);
-                  _launchGoogleMaps(
-                      prestador["data"]["companyInfo"]["address"][0]
-                          ["link"]);
-                },
+               onPressed: () {
+  if (prestador["data"]["companyInfo"]["address"] != null &&
+      prestador["data"]["companyInfo"]["address"].isNotEmpty &&
+      prestador["data"]["companyInfo"]["address"][0]["link"] != null) {
+    _launchGoogleMaps(
+        prestador["data"]["companyInfo"]["address"][0]["link"]);
+  } else {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text("Dirección no disponible"),
+        backgroundColor: Colors.orange,
+      ),
+    );
+  }
+},
+
                 icon: const Icon(Icons.location_on),
                 label: const Text("Ver mapa"),
                 style: ElevatedButton.styleFrom(

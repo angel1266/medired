@@ -243,7 +243,7 @@ class _MembresiasState extends State<Membresias> {
                           ),
                           onPressed: () => router.push(RoutePath.signUp),
                           label: const Text(
-                            'Comprar',
+                            'Únete a Medired',
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 18,
