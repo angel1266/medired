@@ -135,7 +135,7 @@ class PrestadoresViewState extends State<PrestadoresView> {
     return Container(
       constraints: const BoxConstraints(minHeight: 400),
       padding: const EdgeInsets.all(40),
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
           image: DecorationImage(
         opacity: 0.3,
         image: AssetImage("assets/images/prestadoresimg.png"),
@@ -197,25 +197,26 @@ class PrestadoresViewState extends State<PrestadoresView> {
     );
   }
 
-  Widget crearListPrestador() {
-    return Column(
-      children: [
-        Container(
-          padding: const EdgeInsets.all(10),
-          height: 70,
-          width: MediaQuery.of(context).size.width * 0.7,
-          child: Align(
-            alignment: Alignment.center,
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-              children: [
-                for (var i = 0; i < prestadores.length; i++)
-                  Container(
-                    margin: EdgeInsets.only(right: 20),
+ Widget crearListPrestador() {
+  return Column(
+    children: [
+      Container(
+        padding: const EdgeInsets.all(10),
+        height: 70,
+        width: MediaQuery.of(context).size.width * 0.7,
+        child: Align(
+          alignment: Alignment.center,
+          child: ListView(
+            scrollDirection: Axis.horizontal,
+            children: [
+              for (var i = 0; i < prestadores.length; i++)
+                MouseRegion(
+                  cursor: SystemMouseCursors.click,
+                  child: Container(
+                    margin: const EdgeInsets.only(right: 20),
                     child: GestureDetector(
                       onTap: () {
                         servicios = [];
-
                         _fetchServicios(prestadores[i]["id"]);
                         setState(() {
                           selectedIndex = i;
@@ -245,23 +246,26 @@ class PrestadoresViewState extends State<PrestadoresView> {
                           Text(
                             prestadores[i]['data']['companyInfo']['name'],
                             style: const TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 15),
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 15,
+                            ),
                           )
                         ],
                       ),
                     ),
-                  )
-              ],
-            ),
+                  ),
+                )
+            ],
           ),
         ),
-        const Divider(color: Color.fromARGB(255, 206, 205, 205)),
-        const SizedBox(height: 20),
-      ],
-    );
-  }
+      ),
+      const Divider(color: Color.fromARGB(255, 206, 205, 205)),
+      const SizedBox(height: 20),
+    ],
+  );
+}
+
 
   List<Widget> ItemPrestador(Map<String, dynamic> prestador, type) {
     bool isDesktop = MediaQuery.of(context).size.width > 800;
@@ -331,7 +335,7 @@ class PrestadoresViewState extends State<PrestadoresView> {
                           servicios[index].name,
                           style: const TextStyle(fontSize: 16),
                         ),
-                        Spacer(),
+                        const Spacer(),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -387,7 +391,7 @@ class PrestadoresViewState extends State<PrestadoresView> {
                         ),
                       ],
                     ),
-                    Divider(color: Color.fromARGB(255, 180, 177, 177)),
+                    const Divider(color: Color.fromARGB(255, 180, 177, 177)),
                   ],
                 );
               }),
@@ -398,7 +402,7 @@ class PrestadoresViewState extends State<PrestadoresView> {
    prestador["data"]["companyInfo"]["address"].isNotEmpty)
       ? prestador["data"]["companyInfo"]["address"][0]["direccion"] ?? 'Sin dirección'
       : 'Dirección no disponible',
-  style: TextStyle(color: Colors.black),
+  style: const TextStyle(color: Colors.black),
 ),
 
             const SizedBox(height: 20),
@@ -464,7 +468,7 @@ class PrestadoresViewState extends State<PrestadoresView> {
                           servicios[index].name,
                           style: const TextStyle(fontSize: 16),
                         ),
-                        Spacer(),
+                        const Spacer(),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -520,7 +524,7 @@ class PrestadoresViewState extends State<PrestadoresView> {
                         ),
                       ],
                     ),
-                    Divider(color: Color.fromARGB(255, 180, 177, 177)),
+                    const Divider(color: Color.fromARGB(255, 180, 177, 177)),
                   ],
                 );
               }),
@@ -528,7 +532,7 @@ class PrestadoresViewState extends State<PrestadoresView> {
             const SizedBox(height: 20),
             Text(
               prestador["data"]["companyInfo"]["address"][0]["direccion"],
-              style: TextStyle(color: Colors.black),
+              style: const TextStyle(color: Colors.black),
             ),
             const SizedBox(height: 20),
             Align(
